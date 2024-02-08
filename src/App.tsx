@@ -1,10 +1,13 @@
 import { MainLayout } from "@/layout/main";
+import { CanvasProvider } from "./canvas/layerContext";
 
 
 const App = () => {
   return (
-    <div>
-      <MainLayout />
+    <div className="w-full h-full">
+      <CanvasProvider>
+        <MainLayout />
+      </CanvasProvider>
     </div>
   );
 };

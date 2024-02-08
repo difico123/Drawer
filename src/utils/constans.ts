@@ -1,0 +1,1 @@
+export const ICON_SELECTOR_SIZE = 45
