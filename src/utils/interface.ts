@@ -9,3 +9,22 @@ export interface IconProps {
     size?: number
     fill?: string
 }
+
+export enum CanvasEffect {
+    NONE = "none"
+}
+
+export enum CanvasMode {
+    DRAW = 'draw',
+    EDIT = "edit",
+
+}
+export interface ICanvasOption {
+    effect: CanvasEffect
+    mode: CanvasMode
+    background?: string,
+    density?: number,
+    size?: number
+    isRandom?: boolean
+    icon: string
+}

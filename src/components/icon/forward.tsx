@@ -9,6 +9,7 @@ const Forward = ({ width, height, stroke, size, fill }: IconProps) => {
         width={_width}
         height={_height}
         viewBox="0 0 141 141"
+        className="icon"
     >
         <rect strokeWidth="4" x="0.492497" y="0.507391" width="136.96" height="136.961" rx="68.4801" transform="matrix(0.999889 0.0148937 -0.0148957 0.999889 2.55839 0.138717)" stroke={stroke} fill={fill} />
         <path strokeWidth="4" d="M108.531 70.1462L32.4618 70.1462" stroke={stroke} strokeLinecap="round" strokeLinejoin="round" fill={fill} />

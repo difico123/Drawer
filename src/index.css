@@ -33,7 +33,31 @@ code {
   height: 538px;
 }
 
-.icon-hover {
-  fill: red;
-  stroke: red
+.icon { 
+  cursor: pointer;
+}
+
+.icon rect, path{
+  stroke: black;
+}
+
+.icon:hover rect{
+  stroke: white;
+  fill: black
+}
+
+.icon:hover path{
+  stroke: white
+}
+
+.icon-back {
+  cursor: pointer;
+}
+
+.icon-back:hover path{
+  stroke: white
+}
+
+.icon-back:hover path:nth-child(1){
+  fill: black
 }

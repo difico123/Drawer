@@ -1,33 +1,55 @@
 import { Icons } from "@/components"
-import { useCanvas } from "@/hooks/useCavas"
-import { ICON_SELECTOR_SIZE } from "@/utils/constans"
+import { useCanvas } from "@/hooks/useCanvas"
+import { getIconLink, getPaginatedItems, ICON_SELECTOR_SIZE } from "@/utils"
 import { times } from "lodash"
+import { useMemo, useState } from "react"
 
 const IconsLength = 20
 
-const MAX_DISPLAY_ICON_NUMBER = 18
-
-
 export const IconSelector = () => {
-    const { setIcon } = useCanvas()
+    const { setOption, option } = useCanvas()
+    const [page, setPage] = useState(1)
 
     const handleClickIcon = (url: string) => () => {
-        setIcon(url)
+        setOption({ ...option, icon: url })
     }
 
-    return <div className="flex-1 mr-4">
-        <div>
-            <div className={`w-[${ICON_SELECTOR_SIZE}px] h-[${ICON_SELECTOR_SIZE}px] grid grid-cols-4 gap-[8px] `}>
+    const iconsNames = useMemo(() => times(IconsLength), [])
+    const items = getPaginatedItems(iconsNames, page)
+
+
+    const handleClickBack = () => {
+        if (page < 1) return
+        setPage((page) => page - 1)
+    }
+
+    const handleClickForward = () => {
+        if (page >= items.totalPage) return
+        setPage((page) => page + 1)
+    }
+
+
+
+    return <div>
+        <div className={`w-[${ICON_SELECTOR_SIZE}px] h-[${ICON_SELECTOR_SIZE}px] grid grid-cols-4 gap-[8px] `}>
+            <div onClick={handleClickBack}>
                 <Icons.Back stroke="red" width={ICON_SELECTOR_SIZE} height={ICON_SELECTOR_SIZE} />
-                {
-                    times(IconsLength).slice(0, MAX_DISPLAY_ICON_NUMBER).map((_, index) => {
-                        const iconUrl = `/icon/icon_${index + 1}.png`
-                        return <img key={index} src={iconUrl} width={ICON_SELECTOR_SIZE} height={ICON_SELECTOR_SIZE} onClick={handleClickIcon(iconUrl)} />
-                    })
-                }
+            </div>
+            {
+                items.data.map((index) => {
+                    const iconUrl = getIconLink(index + 1)
+                    return <div key={index} className={`cursor-pointer bg-white rounded-full w-[${ICON_SELECTOR_SIZE}px] border-[1px] p-2 h-[${ICON_SELECTOR_SIZE}px] ${iconUrl === option.icon ? 'border-black' : 'border-transparent'}`} >
+                        <img src={iconUrl} width={ICON_SELECTOR_SIZE} height={ICON_SELECTOR_SIZE} onClick={handleClickIcon(iconUrl)} />
+                    </div>
+                })
+            }
+
+            <div onClick={handleClickForward}>
                 <Icons.Forward stroke="red" width={ICON_SELECTOR_SIZE} height={ICON_SELECTOR_SIZE} />
             </div>
-        </div>
 
+        </div>
     </div>
+
+
 }
