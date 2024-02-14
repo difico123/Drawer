@@ -2,12 +2,13 @@ import classNames from "classnames"
 
 
 type IProps = {
-    children: React.ReactNode
+    children: React.ReactNode,
+    active?: boolean
 } & React.ButtonHTMLAttributes<HTMLButtonElement>
 
 export const Button = (props: IProps) => {
 
-    const { children, ...rest } = props
+    const { children, active, ...rest } = props
 
     return <button
         {...rest}
@@ -18,6 +19,7 @@ export const Button = (props: IProps) => {
                 'hover:border-white',
                 'hover:bg-black',
                 'group',
+                active ? 'bg-white' : '',
                 rest.className
             )
         }>

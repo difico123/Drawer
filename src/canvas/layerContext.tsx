@@ -7,7 +7,7 @@ const defaultOption: ICanvasOption = {
     effect: CanvasEffect.NONE,
     mode: CanvasMode.DRAW,
     icon: getIconLink(15),
-    size: 10,
+    size: 20,
     background: GRAD_BG_LIST[0]
 }
 

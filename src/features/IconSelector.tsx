@@ -19,12 +19,12 @@ export const IconSelector = () => {
     const items = getPaginatedItems(iconsNames, page)
 
 
-    const handleClickBack = () => {
+    const handleBackPage = () => {
         if (page < 1) return
         setPage((page) => page - 1)
     }
 
-    const handleClickForward = () => {
+    const handleForwardPage = () => {
         if (page >= items.totalPage) return
         setPage((page) => page + 1)
     }
@@ -35,7 +35,7 @@ export const IconSelector = () => {
             "grid grid-cols-4",
             "gap-[8px]")}
         >
-            <div onClick={handleClickBack}>
+            <div onClick={handleBackPage}>
                 <Icons.Back
                     width={ICON_SELECTOR_SIZE}
                     height={ICON_SELECTOR_SIZE}
@@ -69,7 +69,7 @@ export const IconSelector = () => {
                 })
             }
 
-            <div onClick={handleClickForward}>
+            <div onClick={handleForwardPage}>
                 <Icons.Forward
                     width={ICON_SELECTOR_SIZE}
                     height={ICON_SELECTOR_SIZE}

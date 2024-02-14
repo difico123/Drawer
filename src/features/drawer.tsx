@@ -81,7 +81,7 @@ export const Drawer = () => {
         onMouseDown={handleMouseDown}
         onMousemove={handleMouseMove}
         onMouseup={handleMouseUp}
-        className="border-[2px] border-black rounded"
+        className="border-[2px] border-black rounded-[40px] overflow-hidden"
     >
         <Layer>
             <Image

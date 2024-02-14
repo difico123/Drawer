@@ -1,5 +1,6 @@
-import { BackgroundSelect, DropSelect, RangeSlider } from "@/components"
+import { BackgroundSelect, Button, DropSelect, Icons, RangeSlider } from "@/components"
 import { useCanvas } from "@/hooks/useCanvas"
+import { DrawerManagement } from "./DrawerManagement"
 
 export const OptionSetting = () => {
 
@@ -20,6 +21,10 @@ export const OptionSetting = () => {
             <BackgroundSelect />
             <DropSelect />
         </div>
+        <div className="my-4">
+            <DrawerManagement />
+        </div>
+        <div className="mt-4" />
         <RangeSlider
             value={density}
             title="Density"
@@ -33,8 +38,8 @@ export const OptionSetting = () => {
             title="Size"
             onChangeValue={handleChangeSize}
             step={1}
-            min={10}
-            max={50}
+            min={20}
+            max={100}
         />
     </div>
 }
