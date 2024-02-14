@@ -1,12 +1,11 @@
 // src/ImageDownloader.js
-import { range, times } from 'lodash';
-import React, { useState } from 'react';
+import { range, } from 'lodash';
 
 const makeUrl = (index: number) => {
-    return `https://notwk.london/bg/bg_${index}.jpg`
+    return `https://notwk.london/bg/col_${index}.png`
 }
 
-const imageUrls = range(19, 20).map(val => {
+const imageUrls = range(10, 24).map(val => {
     return {
         url: makeUrl(val),
         order: val
@@ -14,12 +13,6 @@ const imageUrls = range(19, 20).map(val => {
 })
 
 const ImageDownloader = () => {
-    const dev = []
-    const [imageUrl, setImageUrl] = useState("https://notwk.london/bg/bg_1.jpg");
-
-    const handleChange = (e: any) => {
-        setImageUrl(e.target.value);
-    };
 
     const handleDownload = async () => {
         if (imageUrls.length > 0) {
@@ -28,33 +21,17 @@ const ImageDownloader = () => {
 
                 imageUrls.map(async (item) => {
 
-
                     const response = await fetch(item.url);
                     const blob = await response.blob();
                     const url = window.URL.createObjectURL(new Blob([blob]));
                     const link = document.createElement('a');
                     link.href = url;
-                    link.setAttribute('download', `bg_${item.order}.jpg`);
+                    link.setAttribute('download', `col_${item.order}.png`);
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
-                    // Reset the URL to prevent re-downloading on re-render
                     URL.revokeObjectURL(url);
-
                 })
-                // for (let i = 0; i < imageUrls.length; i++) {
-                //   const response = await fetch(imageUrls[i]);
-                //   const blob = await response.blob();
-                //   const url = window.URL.createObjectURL(new Blob([blob]));
-                //   const link = document.createElement('a');
-                //   link.href = url;
-                //   link.setAttribute('download', `image_${i + 1}.jpg`);
-                //   document.body.appendChild(link);
-                //   link.click();
-                //   document.body.removeChild(link);
-                //   // Reset the URL to prevent re-downloading on re-render
-                //   URL.revokeObjectURL(url);
-                // }
             } catch (error) {
                 console.error('Error downloading images:', error);
             }

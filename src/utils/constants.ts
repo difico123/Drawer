@@ -2,7 +2,7 @@ export const ICON_SELECTOR_SIZE = 45
 export const DEFAULT_ITEM_PER_PAGE = 14
 export const STAGE_SIZE = 538
 
-export const BgList = [
+export const BG_LIST = [
     "/bg/bg_0.jpg",
     "/bg/bg_1.jpg",
     "/bg/bg_2.jpg",
@@ -22,4 +22,56 @@ export const BgList = [
     "/bg/bg_17.jpg",
     "/bg/bg_18.jpg",
     "/bg/bg_19.jpg",
+]
+
+export const GRAD_BG_LIST = [
+    "/grad/grad_1.png",
+    "/grad/grad_2.png",
+    "/grad/grad_3.png",
+    "/grad/grad_4.png",
+    "/grad/grad_5.png",
+    "/grad/grad_6.png",
+    "/grad/grad_7.png",
+    "/grad/grad_8.png",
+    "/grad/grad_9.png",
+    "/grad/grad_11.png",
+    "/grad/grad_12.png",
+    "/grad/grad_13.png",
+    "/grad/grad_14.png",
+    "/grad/grad_15.png",
+    "/grad/grad_16.png",
+    "/grad/grad_17.png",
+    "/grad/grad_18.png",
+    "/grad/grad_19.png",
+    "/grad/grad_20.png",
+    "/grad/grad_21.png",
+    "/grad/grad_22.png",
+    "/grad/grad_23.png",
+    "/grad/grad_24.png",
+]
+
+export const COL_BG_LIST = [
+    "/col/col_0.png",
+    "/col/col_1.png",
+    "/col/col_2.png",
+    "/col/col_3.png",
+    "/col/col_4.png",
+    "/col/col_5.png",
+    "/col/col_6.png",
+    "/col/col_7.png",
+    "/col/col_8.png",
+    "/col/col_9.png",
+    "/col/col_11.png",
+    "/col/col_12.png",
+    "/col/col_13.png",
+    "/col/col_14.png",
+    "/col/col_15.png",
+    "/col/col_16.png",
+    "/col/col_17.png",
+    "/col/col_18.png",
+    "/col/col_19.png",
+    "/col/col_20.png",
+    "/col/col_21.png",
+    "/col/col_22.png",
+    "/col/col_23.png",
 ]

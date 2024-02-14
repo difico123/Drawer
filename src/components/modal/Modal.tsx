@@ -18,7 +18,7 @@ export const Modal: ForwardRefExoticComponent<
     Props & RefAttributes<ModalRef>
 > = forwardRef((props, ref) => {
 
-    const [isOpen, setIsOpen] = useState(true)
+    const [isOpen, setIsOpen] = useState(false)
     const containerRef = useRef<HTMLDivElement>(null)
 
     useOutsideClick(containerRef, () => {

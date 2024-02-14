@@ -3,7 +3,7 @@ import { Button } from "../base/Button"
 import Background from "../icon/background"
 import { Modal } from "../modal/Modal"
 import { useRef } from "react"
-import { BgList, ModalRef } from "@/utils"
+import { BG_LIST, ModalRef } from "@/utils"
 import { BackgroundItem } from "./BackgroundItem"
 import { useCanvas } from "@/hooks/useCanvas"
 
@@ -31,7 +31,7 @@ export const BackgroundSelect = () => {
         <Modal ref={modalRef}>
             <div className="flex gap-2 flex-wrap max-w-[400px]">
                 {
-                    BgList.map((item, index) => {
+                    BG_LIST.map((item, index) => {
                         return <BackgroundItem
                             key={index}
                             src={item}

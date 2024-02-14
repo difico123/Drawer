@@ -1,4 +1,4 @@
-import { CanvasEffect, CanvasMode, ICanvasOption, getIconLink } from "@/utils";
+import { CanvasEffect, CanvasMode, GRAD_BG_LIST, ICanvasOption, getIconLink } from "@/utils";
 import { createContext, useState } from "react"
 
 import React from 'react';
@@ -7,7 +7,8 @@ const defaultOption: ICanvasOption = {
     effect: CanvasEffect.NONE,
     mode: CanvasMode.DRAW,
     icon: getIconLink(15),
-    size: 10
+    size: 10,
+    background: GRAD_BG_LIST[0]
 }
 
 const CanvasContext = createContext<{
