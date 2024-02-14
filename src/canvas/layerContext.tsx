@@ -6,7 +6,8 @@ import React from 'react';
 const defaultOption: ICanvasOption = {
     effect: CanvasEffect.NONE,
     mode: CanvasMode.DRAW,
-    icon: getIconLink(15)
+    icon: getIconLink(15),
+    size: 10
 }
 
 const CanvasContext = createContext<{

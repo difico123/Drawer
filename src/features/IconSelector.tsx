@@ -1,6 +1,7 @@
 import { Icons } from "@/components"
 import { useCanvas } from "@/hooks/useCanvas"
 import { getIconLink, getPaginatedItems, ICON_SELECTOR_SIZE } from "@/utils"
+import classNames from "classnames"
 import { times } from "lodash"
 import { useMemo, useState } from "react"
 
@@ -28,24 +29,51 @@ export const IconSelector = () => {
         setPage((page) => page + 1)
     }
 
-
-
     return <div>
-        <div className={`w-[${ICON_SELECTOR_SIZE}px] h-[${ICON_SELECTOR_SIZE}px] grid grid-cols-4 gap-[8px] `}>
+        <div className={classNames(
+            `w-[${ICON_SELECTOR_SIZE}px] h-[${ICON_SELECTOR_SIZE}px]`,
+            "grid grid-cols-4",
+            "gap-[8px]")}
+        >
             <div onClick={handleClickBack}>
-                <Icons.Back stroke="red" width={ICON_SELECTOR_SIZE} height={ICON_SELECTOR_SIZE} />
+                <Icons.Back
+                    width={ICON_SELECTOR_SIZE}
+                    height={ICON_SELECTOR_SIZE}
+                />
             </div>
             {
                 items.data.map((index) => {
                     const iconUrl = getIconLink(index + 1)
-                    return <div key={index} className={`cursor-pointer bg-white rounded-full w-[${ICON_SELECTOR_SIZE}px] border-[1px] p-2 h-[${ICON_SELECTOR_SIZE}px] ${iconUrl === option.icon ? 'border-black' : 'border-transparent'}`} >
-                        <img src={iconUrl} width={ICON_SELECTOR_SIZE} height={ICON_SELECTOR_SIZE} onClick={handleClickIcon(iconUrl)} />
+                    return <div
+                        key={index}
+                        className={
+                            classNames(
+                                'p-2',
+                                'cursor-pointer',
+                                'rounded-full',
+                                'border-[1px]',
+                                `w-[${ICON_SELECTOR_SIZE}px] h-[${ICON_SELECTOR_SIZE}px]`,
+                                `${iconUrl === option.icon ?
+                                    'border-black bg-white' :
+                                    'border-transparent bg-transparent'}`
+                            )
+                        }
+                    >
+                        <img
+                            src={iconUrl}
+                            width={ICON_SELECTOR_SIZE}
+                            height={ICON_SELECTOR_SIZE}
+                            onClick={handleClickIcon(iconUrl)}
+                        />
                     </div>
                 })
             }
 
             <div onClick={handleClickForward}>
-                <Icons.Forward stroke="red" width={ICON_SELECTOR_SIZE} height={ICON_SELECTOR_SIZE} />
+                <Icons.Forward
+                    width={ICON_SELECTOR_SIZE}
+                    height={ICON_SELECTOR_SIZE}
+                />
             </div>
 
         </div>

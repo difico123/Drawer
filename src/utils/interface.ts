@@ -28,3 +28,8 @@ export interface ICanvasOption {
     isRandom?: boolean
     icon: string
 }
+
+export type ModalRef = {
+    show: () => void,
+    hide: () => void
+}

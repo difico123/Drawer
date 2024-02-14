@@ -28,3 +28,4 @@ export function getPaginatedItems(items: any[], page: number, pageSize?: number)
 export const getIconLink = (index: number) => {
     return `/icon/icon_${index}.png`
 }
+

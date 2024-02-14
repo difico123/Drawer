@@ -1,20 +1,29 @@
 import { useCanvas } from '@/hooks/useCanvas';
+import { STAGE_SIZE, StageType } from '@/utils';
 import { KonvaEventObject } from 'konva/lib/Node';
-import React from 'react'
-import { Stage, Layer, Text, Image } from 'react-konva';
+import React, { useMemo, useRef } from 'react'
+import { Stage, Layer, Text, Image, } from 'react-konva';
 import useImage from 'use-image';
 
 
 const URLImage = ({ image }: { image: { src: string, x: number, y: number } }) => {
     const [img] = useImage(image.src);
+    const { option } = useCanvas()
+    const { width, height } = {
+        width: option.size || img?.width || 10,
+        height: option.size || img?.height || 10
+    }
+
     return (
         <Image
             image={img}
             x={image.x}
             y={image.y}
             // I will use offset to set origin to the center of the image
-            offsetX={img ? img.width / 2 : 0}
-            offsetY={img ? img.height / 2 : 0}
+            offsetX={img ? width / 2 : 0}
+            offsetY={img ? height / 2 : 0}
+            width={width}
+            height={height}
         />
     );
 };
@@ -53,15 +62,36 @@ export const Drawer = () => {
     const handleMouseUp = () => {
         isDrawing.current = false;
     };
+    const stageRef = useRef<StageType>(null)
+
+    const [img] = useImage(option.background || '');
+
+    const bgWidth = useMemo(() => {
+        const { width, height } = {
+            width: img?.width || STAGE_SIZE,
+            height: img?.height || STAGE_SIZE
+        }
+        return (STAGE_SIZE / height) * width
+    }, [img?.width])
+
     return <Stage
-        width={538}
-        height={538}
+        ref={stageRef}
+        width={STAGE_SIZE}
+        height={STAGE_SIZE}
         onMouseDown={handleMouseDown}
         onMousemove={handleMouseMove}
         onMouseup={handleMouseUp}
         className="border-[2px] border-black rounded"
     >
         <Layer>
+            <Image
+                image={img}
+                x={0}
+                y={0}
+                width={bgWidth}
+                height={STAGE_SIZE}
+                offsetX={(bgWidth - STAGE_SIZE) / 2}
+            />
             <Text text="Just start drawing" x={5} y={30} />
             {lines.map((line, i) => {
                 return line?.points?.slice?.(0, line?.points?.length / 2)?.map((_: any, pointIndex: number) => {
