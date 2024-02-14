@@ -1,4 +1,4 @@
-import { BackgroundSelect, Button, DropSelect, Icons, RangeSlider } from "@/components"
+import { BackgroundSelect, DropSelect, RangeSlider } from "@/components"
 import { useCanvas } from "@/hooks/useCanvas"
 import { DrawerManagement } from "./DrawerManagement"
 

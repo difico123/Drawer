@@ -1,6 +1,6 @@
 import { IconProps } from "@/utils/interface"
 
-const Back = ({ width, height, stroke, size, fill }: IconProps) => {
+export const IconBack = ({ width, height, stroke, size, fill }: IconProps) => {
     const _width = size || width;
     const _height = size || height
 
@@ -18,9 +18,7 @@ const Back = ({ width, height, stroke, size, fill }: IconProps) => {
 
 }
 
-Back.defaultProps = {
+IconBack.defaultProps = {
     fill: 'none',
     stroke: 'black'
 }
-
-export default Back

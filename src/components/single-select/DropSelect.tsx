@@ -1,6 +1,6 @@
 import classNames from "classnames"
 import { Button } from "../base/Button"
-import Dropper from "../icon/dropper"
+import { IconDropper } from "../icon/IconDropper"
 import { COL_BG_LIST, GRAD_BG_LIST, ModalRef } from "@/utils"
 import { Modal } from "../modal/Modal"
 import { BackgroundItem } from "./BackgroundItem"
@@ -27,7 +27,7 @@ export const DropSelect = () => {
     return <div>
 
         <Button className={classNames("px-[39px] py-[2px]")} onClick={handleClick}>
-            <Dropper size={40} />
+            <IconDropper size={40} />
         </Button>
         <Modal ref={modalRef}>
             <div className="flex gap-2 flex-wrap max-w-[400px]">

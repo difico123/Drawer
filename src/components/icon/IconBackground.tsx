@@ -1,7 +1,7 @@
 
 import { IconProps } from "@/utils/interface"
 
-const Background = ({ width, height, stroke, size, fill }: IconProps) => {
+export const IconBackground = ({ width, height, stroke, size, fill }: IconProps) => {
     const _width = size || width;
     const _height = size || height
 
@@ -20,9 +20,7 @@ const Background = ({ width, height, stroke, size, fill }: IconProps) => {
 
 }
 
-Background.defaultProps = {
+IconBackground.defaultProps = {
     fill: 'none',
     stroke: '#000000'
 }
-
-export default Background

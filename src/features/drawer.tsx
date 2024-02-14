@@ -1,7 +1,8 @@
 import { useCanvas } from '@/hooks/useCanvas';
+import { AppEvent, emitter } from '@/plugins';
 import { STAGE_SIZE, StageType } from '@/utils';
 import { KonvaEventObject } from 'konva/lib/Node';
-import React, { useMemo, useRef } from 'react'
+import React, { useEffect, useMemo, useRef } from 'react'
 import { Stage, Layer, Text, Image, } from 'react-konva';
 import useImage from 'use-image';
 
@@ -73,6 +74,16 @@ export const Drawer = () => {
         }
         return (STAGE_SIZE / height) * width
     }, [img?.width])
+
+    useEffect(() => {
+        emitter.on(AppEvent.UNDO_DRAW, () => {
+            console.log("oke");
+        })
+
+        return () => {
+            emitter.off(AppEvent.UNDO_DRAW)
+        }
+    }, [])
 
     return <Stage
         ref={stageRef}

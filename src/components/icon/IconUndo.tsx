@@ -2,7 +2,7 @@
 
 import { IconProps } from "@/utils/interface"
 
-const Undo = ({ width, height, stroke, size, fill }: IconProps) => {
+export const IconUndo = ({ width, height, stroke, size, fill }: IconProps) => {
     const _width = size || width;
     const _height = size || height
 
@@ -17,9 +17,7 @@ const Undo = ({ width, height, stroke, size, fill }: IconProps) => {
 
 }
 
-Undo.defaultProps = {
+IconUndo.defaultProps = {
     fill: 'none',
     stroke: '#000000'
 }
-
-export default Undo

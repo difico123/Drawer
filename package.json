@@ -12,6 +12,7 @@
   "dependencies": {
     "classnames": "^2.5.1",
     "konva": "^9.3.2",
+    "mitt": "^3.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-konva": "^18.2.10",

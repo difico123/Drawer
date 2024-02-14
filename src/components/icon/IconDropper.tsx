@@ -1,7 +1,7 @@
 
 import { IconProps } from "@/utils/interface"
 
-const Dropper = ({ width, height, stroke, size, fill }: IconProps) => {
+export const IconDropper = ({ width, height, stroke, size, fill }: IconProps) => {
     const _width = size || width;
     const _height = size || height
 
@@ -16,10 +16,8 @@ const Dropper = ({ width, height, stroke, size, fill }: IconProps) => {
 
 }
 
-Dropper.defaultProps = {
+IconDropper.defaultProps = {
     fill: 'none',
     stroke: '#000000',
     size: 10
 }
-
-export default Dropper

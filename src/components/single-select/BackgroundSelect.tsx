@@ -1,6 +1,6 @@
 import classNames from "classnames"
 import { Button } from "../base/Button"
-import Background from "../icon/background"
+import { IconBackground } from "../icon/IconBackground"
 import { Modal } from "../modal/Modal"
 import { useRef } from "react"
 import { BG_LIST, ModalRef } from "@/utils"
@@ -26,7 +26,7 @@ export const BackgroundSelect = () => {
 
     return <div>
         <Button className={classNames("px-[39px] py-[2px]")} onClick={handleClick}>
-            <Background size={40} />
+            <IconBackground size={40} />
         </Button>
         <Modal ref={modalRef}>
             <div className="flex gap-2 flex-wrap max-w-[400px]">

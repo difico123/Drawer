@@ -1,7 +1,7 @@
 
 import { IconProps } from "@/utils/interface"
 
-const Pen = ({ width, height, stroke, size, fill }: IconProps) => {
+export const IconPen = ({ width, height, stroke, size, fill }: IconProps) => {
     const _width = size || width;
     const _height = size || height
 
@@ -19,9 +19,7 @@ const Pen = ({ width, height, stroke, size, fill }: IconProps) => {
 
 }
 
-Pen.defaultProps = {
+IconPen.defaultProps = {
     fill: 'none',
     stroke: '#000000'
 }
-
-export default Pen

@@ -1,7 +1,7 @@
 
 import { IconProps } from "@/utils/interface"
 
-const Forward = ({ width, height, stroke, size, fill }: IconProps) => {
+export const IconForward = ({ width, height, stroke, size, fill }: IconProps) => {
     const _width = size || width;
     const _height = size || height
 
@@ -18,11 +18,9 @@ const Forward = ({ width, height, stroke, size, fill }: IconProps) => {
 
 }
 
-Forward.defaultProps = {
+IconForward.defaultProps = {
     width: 141,
     height: 141,
     stroke: 'black',
     fill: 'none'
 }
-
-export default Forward
