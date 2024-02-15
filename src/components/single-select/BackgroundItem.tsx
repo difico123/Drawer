@@ -1,6 +1,5 @@
 import classNames from "classnames"
 
-
 type IProps = {
     src: string,
     onClick: () => void

@@ -11,7 +11,14 @@ export interface IconProps {
 }
 
 export enum CanvasEffect {
-    NONE = "none"
+    NONE = "None",
+    BEAT = "Beat",
+    BOUNCE = "Bounce",
+    ORBIT = "Orbit",
+    ROTATE = "Rotate",
+    SWING = "Swing",
+    APPEAR = "Appear",
+    WIGGLE = "Wiggle"
 }
 
 export enum CanvasMode {
