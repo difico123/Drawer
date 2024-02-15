@@ -20,6 +20,11 @@ export const DrawerManagement = () => {
         emitter.emit(AppEvent.UNDO_DRAW)
     }
 
+    const handleDelete = () => {
+        emitter.emit(AppEvent.REMOVE_CANVAS)
+    }
+
+
     return <div className="flex justify-between">
         <Button active={option.mode === CanvasMode.DRAW} onClick={handleCanvasMode(CanvasMode.DRAW)}>
             <Icons.Pen size={ICON_SIZE} />
@@ -30,7 +35,7 @@ export const DrawerManagement = () => {
         <Button onClick={handleUndoDraw}>
             <Icons.Undo size={ICON_SIZE} />
         </Button>
-        <Button >
+        <Button onClick={handleDelete}>
             <Icons.Trash size={ICON_SIZE} />
         </Button>
     </div>

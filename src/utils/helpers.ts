@@ -1,5 +1,6 @@
 import { drop } from "lodash";
 import { DEFAULT_ITEM_PER_PAGE } from "./constants";
+import { Vector2d } from "konva/lib/types";
 
 export function isJson(str: string): boolean {
     try {
@@ -29,3 +30,9 @@ export const getIconLink = (index: number) => {
     return `/icon/icon_${index}.png`
 }
 
+
+
+export const vectorDistance = (a: Vector2d | undefined | null, b: Vector2d | undefined | null) => {
+    if (!a || !b) return 0
+    return Math.sqrt(Math.pow(b.x - a.x, 2) + Math.pow(b.y - a.y, 2));
+}

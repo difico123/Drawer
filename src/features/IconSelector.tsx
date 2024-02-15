@@ -5,7 +5,7 @@ import classNames from "classnames"
 import { times } from "lodash"
 import { useMemo, useState } from "react"
 
-const IconsLength = 20
+const ICON_LENGTH = 20
 
 export const IconSelector = () => {
     const { setOption, option } = useCanvas()
@@ -15,7 +15,7 @@ export const IconSelector = () => {
         setOption({ ...option, icon: url })
     }
 
-    const iconsNames = useMemo(() => times(IconsLength), [])
+    const iconsNames = useMemo(() => times(ICON_LENGTH), [])
     const items = getPaginatedItems(iconsNames, page)
 
 

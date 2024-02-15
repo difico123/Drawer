@@ -1,9 +1,11 @@
 import { useCanvas } from '@/hooks/useCanvas';
 import { AppEvent, emitter } from '@/plugins';
-import { STAGE_SIZE, StageType } from '@/utils';
+import { STAGE_SIZE, StageType, vectorDistance } from '@/utils';
 import { KonvaEventObject } from 'konva/lib/Node';
-import React, { useEffect, useMemo, useRef } from 'react'
-import { Stage, Layer, Text, Image, } from 'react-konva';
+import { Vector2d } from 'konva/lib/types';
+import { last } from 'lodash';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import { Stage, Layer, Image, } from 'react-konva';
 import useImage from 'use-image';
 
 
@@ -32,8 +34,7 @@ const URLImage = ({ image }: { image: { src: string, x: number, y: number } }) =
 
 export const Drawer = () => {
 
-    const [tool, setTool] = React.useState('pen');
-    const [lines, setLines] = React.useState<{ tool: string, points: (number)[] }[]>([]);
+    const [lines, setLines] = useState<(Vector2d | null | undefined)[][]>([])
     const isDrawing = React.useRef(false);
 
     const { option } = useCanvas()
@@ -41,28 +42,40 @@ export const Drawer = () => {
     const handleMouseDown = (e: KonvaEventObject<MouseEvent>) => {
         isDrawing.current = true;
         const pos = e.target?.getStage()?.getPointerPosition();
-        setLines([...lines, { tool, points: [pos?.x || 0, pos?.y || 0] }]);
+        setLines([...lines, [pos]])
     };
 
-    const handleMouseMove = (e: KonvaEventObject<MouseEvent>) => {
+    const handleMouseMove = useCallback((e: KonvaEventObject<MouseEvent>) => {
         // no drawing - skipping
         if (!isDrawing.current) {
             return;
         }
+
         const stage = e.target.getStage();
         const point = stage?.getPointerPosition();
-        let lastLine = lines[lines.length - 1];
+
+        let lastLines = lines[lines.length - 1]
+
+        // check if not enough dimension
+        const lastPoint = last(lastLines)
+
+        const distance = vectorDistance(lastPoint, point)
+
+        if (distance <= 10) return
+
         // add point
-        lastLine.points = lastLine.points.concat([point?.x || 0, point?.y || 0]);
+        lastLines = lastLines.concat([point]);
 
         // replace last
-        lines.splice(lines.length - 1, 1, lastLine);
+        lines.splice(lines.length - 1, 1, lastLines);
         setLines(lines.concat());
-    };
+    }, [lines[lines.length - 1]])
+
 
     const handleMouseUp = () => {
         isDrawing.current = false;
     };
+
     const stageRef = useRef<StageType>(null)
 
     const [img] = useImage(option.background || '');
@@ -80,8 +93,13 @@ export const Drawer = () => {
             console.log("oke");
         })
 
+        emitter.on(AppEvent.REMOVE_CANVAS, () => {
+            setLines([])
+        })
+
         return () => {
             emitter.off(AppEvent.UNDO_DRAW)
+            emitter.off(AppEvent.REMOVE_CANVAS)
         }
     }, [])
 
@@ -103,15 +121,14 @@ export const Drawer = () => {
                 height={STAGE_SIZE}
                 offsetX={(bgWidth - STAGE_SIZE) / 2}
             />
-            <Text text="Just start drawing" x={5} y={30} />
-            {lines.map((line, i) => {
-                return line?.points?.slice?.(0, line?.points?.length / 2)?.map((_: any, pointIndex: number) => {
+            {lines.map((points, i) => {
+                return points?.map((point, pointIndex: number) => {
                     return <URLImage
                         key={`${i}${pointIndex}`}
                         image={{
                             src: option.icon,
-                            x: line?.points?.[2 * pointIndex],
-                            y: line?.points?.[2 * pointIndex + 1]
+                            x: point?.x || 0,
+                            y: point?.y || 0
                         }}
                     />
                 })
