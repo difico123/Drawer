@@ -31,7 +31,7 @@ export interface ICanvasOption {
     mode: CanvasMode
     background?: string,
     density?: number,
-    size?: number
+    size: number
     isRandom?: boolean
     icon: string
 }

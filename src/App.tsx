@@ -1,6 +1,5 @@
 import { MainLayout } from "@/layout/main";
 import { CanvasProvider } from "./canvas/layerContext";
-import ImageDownloader from "./components/image-download/ImageDownload";
 
 const App = () => {
   return (
@@ -8,7 +7,6 @@ const App = () => {
       <CanvasProvider>
         <MainLayout />
       </CanvasProvider>
-      <ImageDownloader />
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { AppEvent, emitter } from '@/plugins';
 import { STAGE_SIZE, StageType, vectorDistance } from '@/utils';
 import { KonvaEventObject } from 'konva/lib/Node';
 import { Vector2d } from 'konva/lib/types';
-import { last } from 'lodash';
+import { cloneDeep, last } from 'lodash';
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { Stage, Layer, Image, } from 'react-konva';
 import useImage from 'use-image';
@@ -52,6 +52,7 @@ export const Drawer = () => {
         }
 
         const stage = e.target.getStage();
+
         const point = stage?.getPointerPosition();
 
         let lastLines = lines[lines.length - 1]
@@ -61,14 +62,15 @@ export const Drawer = () => {
 
         const distance = vectorDistance(lastPoint, point)
 
-        if (distance <= 10) return
+        if (distance >= 4) {
 
-        // add point
-        lastLines = lastLines.concat([point]);
+            // add point
+            lastLines = lastLines.concat([point]);
 
-        // replace last
-        lines.splice(lines.length - 1, 1, lastLines);
-        setLines(lines.concat());
+            // replace last
+            lines.splice(lines.length - 1, 1, lastLines);
+            setLines(lines.concat());
+        }
     }, [lines[lines.length - 1]])
 
 
@@ -90,7 +92,11 @@ export const Drawer = () => {
 
     useEffect(() => {
         emitter.on(AppEvent.UNDO_DRAW, () => {
-            console.log("oke");
+            setLines((lines) => {
+                const _lines = cloneDeep([...lines])
+                _lines.pop()
+                return _lines
+            })
         })
 
         emitter.on(AppEvent.REMOVE_CANVAS, () => {
