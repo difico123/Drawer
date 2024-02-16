@@ -17,7 +17,8 @@
     "react-dom": "^18.2.0",
     "react-konva": "^18.2.10",
     "sass": "^1.70.0",
-    "use-image": "^1.1.1"
+    "use-image": "^1.1.1",
+    "web-vitals": "^3.5.2"
   },
   "devDependencies": {
     "@types/lodash": "^4.14.202",
